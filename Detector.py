@@ -35,7 +35,7 @@ def start_detector():
         else:
             label = PARAMETER.WRONG
             error_counter = error_counter + 1
-        output_file.write(str(i) + "  " + PARAMETER.PACKET_TEST + "-" + key + ".txt" + "  " + classify_class + "  " + str(score_ham) + "  " + str(score_spam) + "  " + key.split("-")[0] + "  " + label + "\n")
+        output_file.write(str(i) + "  " + PARAMETER.PACKAGE_TEST + "-" + key + ".txt" + "  " + classify_class + "  " + str(score_ham) + "  " + str(score_spam) + "  " + key.split("-")[0] + "  " + label + "\n")
         i = i+1
     print("error: " + str(error_counter))
 

@@ -9,9 +9,10 @@ if __name__ == '__main__':
     os.remove(PARAMETER.MODEL)
     os.remove(PARAMETER.RESULT)
 
-    Read_file.allfiles(PARAMETER.PACKET_TRAIN)
+    Read_file.allfiles(PARAMETER.PACKAGE_TRAIN)
 
     Generate_model.create_model()
 
-    Read_file.allfiles(PARAMETER.PACKET_TEST)
+    Read_file.allfiles(PARAMETER.PACKAGE_TEST)
+
     Detector.run()

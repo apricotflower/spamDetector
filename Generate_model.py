@@ -12,15 +12,14 @@ def create_model():
         for term in value:
             if term:
                 if term not in token_dict:
-                    index_list = [[class_type, 1]]
-                    token_dict[term] = index_list
+                    token_dict[term] = [[class_type, 1]]
                 else:
-                    has_key = False
+                    has_existed_class = False
                     for doc in token_dict[term]:
                         if doc[0] == class_type:
                             doc[1] = doc[1] + 1
-                            has_key = True
-                    if not has_key:
+                            has_existed_class = True
+                    if not has_existed_class:
                         token_dict[term].append([class_type, 1])
 
     ham_total = 0
@@ -29,16 +28,15 @@ def create_model():
         for doc in value:
             if doc[0] == PARAMETER.CLASS_HAM:
                 ham_total = ham_total + doc[1]
-                # ham_total = ham_total + 1
             if doc[0] == PARAMETER.CLASS_SPAM:
                 spam_total = spam_total + doc[1]
-                # spam_total = spam_total + 1
+                
+    vocabulary = len(token_dict)
+    smoothing = PARAMETER.SMOOTHING
+    
     print("ham total: " + str(ham_total))
     print("spam total: " + str(spam_total))
-    vocabulary = len(token_dict)
     print("vocalulary: " + str(vocabulary))
-
-    smoothing = 0.5
 
     keys_list = sorted(token_dict.keys())
     output_file = open(PARAMETER.MODEL, "a+", encoding='utf8')

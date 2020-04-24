@@ -1,5 +1,5 @@
-PACKET_TRAIN = "train"
-PACKET_TEST = "test"
+PACKAGE_TRAIN = "train"
+PACKAGE_TEST = "test"
 
 CLASS_HAM = "ham"
 CLASS_SPAM = "spam"
@@ -12,3 +12,5 @@ RESULT = "result.txt"
 
 RIGHT = "right"
 WRONG = "wrong"
+
+SMOOTHING = 0.5
