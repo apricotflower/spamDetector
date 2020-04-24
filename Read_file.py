@@ -25,13 +25,6 @@ def tokenize(class_type, file_id):
     if f:
         cur_document[class_type + "-" + file_id] = re.split('[^a-zA-Z]', f.read().lower())
 
-        # empty_token_list = []
-        # for token in all_train_document[class_type + "_" + file_id]:
-        #     if token == '':
-        #         empty_token_list.append(token)
-        # for e in empty_token_list:
-        #     all_train_document[class_type + "_" + file_id].remove(e)
-
     else:
         print("Read file error!")
 

@@ -28,13 +28,15 @@ def create_model():
     for value in token_dict.values():
         for doc in value:
             if doc[0] == PARAMETER.CLASS_HAM:
-                # ham_total = ham_total + doc[1]
-                ham_total = ham_total + 1
+                ham_total = ham_total + doc[1]
+                # ham_total = ham_total + 1
             if doc[0] == PARAMETER.CLASS_SPAM:
-                # spam_total = spam_total + doc[1]
-                spam_total = spam_total + 1
+                spam_total = spam_total + doc[1]
+                # spam_total = spam_total + 1
     print("ham total: " + str(ham_total))
     print("spam total: " + str(spam_total))
+    vocabulary = len(token_dict)
+    print("vocalulary: " + str(vocabulary))
 
     smoothing = 0.5
 
@@ -53,8 +55,8 @@ def create_model():
             if doc[0] == PARAMETER.CLASS_SPAM:
                 spam = doc[1]
         line.append(str(ham))
-        line.append(str((ham + smoothing)/ham_total))
+        line.append(str((ham + smoothing)/(ham_total + 0.5 * vocabulary)))
         line.append(str(spam))
-        line.append(str((spam + smoothing) / spam_total))
+        line.append(str((spam + smoothing) /(spam_total + 0.5 * vocabulary)))
         output_file.write(line[0] + "  " + line[1] + "  " + line[2] + "  " + line[3] + "  " + line[4] + "  " + line[5] + "  " + "\n")
         i = i + 1
