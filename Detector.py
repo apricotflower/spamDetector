@@ -18,7 +18,7 @@ def start_detector():
     # print(model_lines)
     tp_ham, fp_ham, fn_ham, tn_ham, = 0, 0, 0, 0 # real:ham predict:ham,real:spam predict:ham,real:ham predict:spam,real:spam predict:spam
     tp_spam, fp_spam, fn_spam, tn_spam, = 0, 0, 0, 0
-    output_file = open(PARAMETER.RESULT, "a+", encoding='utf8')
+    output_file = open(PARAMETER.RESULT, "w+", encoding='utf8')
     p_ham = 1000/1997
     p_spam = 997/1997
     error_counter = 0

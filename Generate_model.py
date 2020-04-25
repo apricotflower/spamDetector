@@ -39,7 +39,7 @@ def create_model():
     print("vocalulary: " + str(vocabulary))
 
     keys_list = sorted(token_dict.keys())
-    output_file = open(PARAMETER.MODEL, "a+", encoding='utf8')
+    output_file = open(PARAMETER.MODEL, "w+", encoding='utf8')
     i = 1
     for key in keys_list:
         line = []
