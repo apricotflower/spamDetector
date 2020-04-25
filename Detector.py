@@ -54,6 +54,7 @@ def start_detector():
         output_file.write(str(i) + "  " + PARAMETER.PACKAGE_TEST + "-" + key + ".txt" + "  " + classify_class + "  " + str(score_ham) + "  " + str(score_spam) + "  " + key.split("-")[0] + "  " + label + "\n")
         i = i+1
     print("error: " + str(error_counter))
+
     ham_arr = [[tp_ham, fp_ham], [fn_ham, tn_ham]]
     show_confusion_matrix(ham_arr, title='ham confusion matrix')
     print("ham: ")
@@ -64,21 +65,30 @@ def start_detector():
     calculation(tp_spam, fp_spam, fn_spam, tn_spam)
 
 
-def show_confusion_matrix(cm, title='Confusion Matrix'):
+def show_confusion_matrix(cm, title):
     # print(cm)
     cm = np.array(cm)
-    plt.imshow(cm, interpolation='nearest', cmap=plt.cm.jet)
+
+    fig = plt.figure()
+    ax = fig.add_subplot()
+    ax.matshow(cm, cmap=plt.cm.binary)
+
+    # ax.imshow(np.array(cm), cmap=plt.cm.jet,
+    #           interpolation='nearest')
+
     width, height = cm.shape
+
     for x in range(width):
         for y in range(height):
-            plt.text(x,y,cm[y][x], color='green', fontsize=15, horizontalalignment="center", va='center', ha='center')
+            ax.annotate(str(cm[x][y]), xy=(y, x),color = "red",
+                        horizontalalignment='center',
+                        verticalalignment='center')
 
+    ax.set_xticklabels([''] + ["in real it is", "in real not"])
+    ax.set_yticklabels([''] + ["in predict it is", "in predict not"])
+    ax.set_xlabel('Real')
+    ax.set_ylabel('Predicted')
     plt.title(title)
-    plt.ylabel('Predicted')
-    plt.xlabel('Real')
-    plt.xticks(np.arange(0, 2), ["in real it is", "in real it is not"])
-    plt.yticks(np.arange(0, 2), ["in predict it is", "in predict it is not"])
-
     plt.show()
 
 
